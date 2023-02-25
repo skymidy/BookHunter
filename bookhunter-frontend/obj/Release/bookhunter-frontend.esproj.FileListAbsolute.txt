@@ -1,0 +1,2 @@
+C:\PRs\BookHunter\BookHunter-Frontend\obj\Release\bookhunter-frontend.esproj.SuggestedBindingRedirects.cache
+C:\PRs\BookHunter\BookHunter-Frontend\obj\Release\bookhunter-frontend.esproj.CoreCompileInputs.cache
