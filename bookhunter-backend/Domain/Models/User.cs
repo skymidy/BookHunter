@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BookHunter_Backend.Models
+namespace BookHunter_Backend.Domain.Models
 {
     public class User
     {

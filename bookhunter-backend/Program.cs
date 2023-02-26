@@ -1,5 +1,8 @@
-using BookHunter_Backend.Models;
+using System.Data.Common;
+using BookHunter_Backend.Domain.Models;
+using BookHunter_Backend.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookHunter", Version = "v1" });
+});
+
+builder.Services.AddRepository();
+builder.Services.AddDbContext<DbContext>(options => options.UseSqlServer(
 builder.Configuration.GetConnectionString("DefaultConnection")
 ));
 
@@ -19,7 +27,8 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     try
     {
-        var context = services.GetRequiredService<ApplicationDbContext>();
+        var context = services.GetRequiredService<DbContext>();
+        // context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
         context.Database.Migrate();
     }
@@ -28,7 +37,7 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine("An error occurred while migrating the database: " + ex.Message);
     }
 }
-// Configure the HTTP request pipeline.
+//Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

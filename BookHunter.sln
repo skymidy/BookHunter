@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "bookhunter-frontend", "BookHunter-Frontend\bookhunter-frontend.esproj", "{DCC082C3-0776-4C4B-8311-1733C33412E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bookhunter-backend", "bookhunter-backend\bookhunter-backend.csproj", "{43B3ACE7-51C5-464D-99F3-DB889AE45CDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bookhunter-backend", "bookhunter-backend\bookhunter-backend.csproj", "{E2B8C39B-3136-4897-8A1C-07B28B3BCAF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{DCC082C3-0776-4C4B-8311-1733C33412E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCC082C3-0776-4C4B-8311-1733C33412E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DCC082C3-0776-4C4B-8311-1733C33412E5}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{43B3ACE7-51C5-464D-99F3-DB889AE45CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43B3ACE7-51C5-464D-99F3-DB889AE45CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43B3ACE7-51C5-464D-99F3-DB889AE45CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43B3ACE7-51C5-464D-99F3-DB889AE45CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2B8C39B-3136-4897-8A1C-07B28B3BCAF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2B8C39B-3136-4897-8A1C-07B28B3BCAF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2B8C39B-3136-4897-8A1C-07B28B3BCAF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2B8C39B-3136-4897-8A1C-07B28B3BCAF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

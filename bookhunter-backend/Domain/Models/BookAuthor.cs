@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BookHunter_Backend.Models
+namespace BookHunter_Backend.Domain.Models
 {
-    public class BookTag
+    public class BookAuthor
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -11,12 +11,10 @@ namespace BookHunter_Backend.Models
         
         [ForeignKey("Book")]
         public int BookId { get; set; }
-
         public Book Book { get; set; }
         
-        [ForeignKey("Tag")]
-        public int TagId { get; set; }
-
-        public Tag Tag { get; set; }
+        [ForeignKey("Author")]
+        public int AuthorId { get; set; }
+        public Author Author { get; set; }
     }
 }
