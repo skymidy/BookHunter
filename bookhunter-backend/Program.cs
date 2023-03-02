@@ -1,7 +1,9 @@
 using System.Data.Common;
+using System.Net;
 using BookHunter_Backend.Domain;
 using BookHunter_Backend.Domain.Models;
 using BookHunter_Backend.Repository;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -13,7 +15,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BookHunter", Version = "v1"}); });
-
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+});
 builder.Services.AddRepository();
 if (Environment.OSVersion.Platform == PlatformID.Win32NT)
 {
@@ -59,7 +64,12 @@ else
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
+app.UseAuthentication();
 
 app.MapControllers();
 
