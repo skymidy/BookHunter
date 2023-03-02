@@ -14,5 +14,8 @@ namespace BookHunter_Backend.Domain.Interfaces
         Task<IEnumerable<Book>> GetBooksByAuthor(string authorName);
 
         Task<IEnumerable<Book>> GetBooksByGenre(string genreName);
+        Task<IEnumerable<Author>> GetBookAuthors(int id);
+        Task<IEnumerable<Tag>> GetBookTags(int id);
+        Task<IEnumerable<Genre>> GetBookGenres(int id);
     }
 }

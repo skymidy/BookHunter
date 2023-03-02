@@ -19,7 +19,7 @@ namespace BookHunter_Backend.Domain.Models
         // ReSharper disable once InconsistentNaming
         public string ISBN { get; set; } = string.Empty;
 
-        public int PagesCount { get; set; } = -1;
+        public string PagesCount { get; set; } = string.Empty;
 
         public DateTime PublishedDate { get; set; } = DateTime.UnixEpoch;
 

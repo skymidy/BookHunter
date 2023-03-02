@@ -1,23 +1,27 @@
-﻿using BookHunter_Backend.Domain.Interfaces;
+﻿using BookHunter_Backend.Domain;
+using BookHunter_Backend.Domain.Interfaces;
 using BookHunter_Backend.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace BookHunter_Backend.Repository
 {
     public abstract class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        protected readonly DbContext Context;
+        protected readonly ApplicationDbContext Context;
         protected readonly DbSet<T> Set;
 
-        public GenericRepository(DbContext context)
+        public GenericRepository(ApplicationDbContext context)
         {
             Context = context;
             Set = Context.Set<T>();
         }
 
-        public async Task<T?> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            return await Set.FindAsync(id);
+            var row = await Set.FindAsync(id);
+            if (row == null) throw new Exception("Error: Invalid row id!");
+            return row;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -45,10 +49,11 @@ namespace BookHunter_Backend.Repository
             return list.Skip((pageNumber - 1) * pageSize).Take(pageSize);
         }
 
-        public void Add(T entity)
+        public T Add(T entity)
         {
-            Set.Add(entity);
+            var entityEntry =  Set.Add(entity);
             Context.SaveChanges();
+            return entityEntry.Entity;
         }
 
         public async Task AddRangeAsync(IEnumerable<T> entities)

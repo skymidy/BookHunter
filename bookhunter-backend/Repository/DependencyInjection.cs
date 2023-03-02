@@ -11,6 +11,7 @@ namespace BookHunter_Backend.Repository
             services.AddTransient<IAuthorRepository, AuthorRepository>();
             services.AddTransient<ITagRepository, TagRepository>();
             services.AddTransient<IGenreRepository, GenreRepository>();
+            services.AddTransient<ISiteParserRepository, SiteParserRepository>();
             
             services.AddScoped<BookService>();
             services.AddScoped<HunterService>();
