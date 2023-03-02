@@ -1,4 +1,5 @@
 ﻿using BookHunter_Backend.Domain.Models;
+using BookHunter_Backend.Objects;
 using BookHunter_Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +17,8 @@ namespace BookHunter_Backend.Controllers
             _bookService = bookService;
         }
         
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> GetPaginated(int pageNumber = 1, int pageSize = 10)
+        [HttpGet("page")]
+        public async Task<ActionResult<IEnumerable<BookInfo>>> GetPaginated(int pageNumber = 1, int pageSize = 10)
         {
             if (pageNumber < 1)
             {
@@ -33,39 +34,50 @@ namespace BookHunter_Backend.Controllers
 
             return Ok(books);
         }
-
-        [HttpGet("{title}")]
-        public async Task<IActionResult> GetBooksByTitle(string title)
+        
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BookInfo>> GetBookById(int id)
         {
-            Console.WriteLine(title);
+            var book = await _bookService.GetBook(id);
+            return Ok(book);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<BookInfo>>> GetBooksByTitle(string title)
+        {
             var books = await _bookService.GetBooksByTitle(title);
             return Ok(books);
         }
-
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<BookInfo>>> GetBooks()
+        {
+            var books = await _bookService.GetAllAsync();
+            return Ok(books);
+        }
         [HttpGet("isbn/{isbn}")]
         // ReSharper disable once InconsistentNaming
-        public async Task<IActionResult> GetBooksByISBN(string isbn)
+        public async Task<ActionResult<IEnumerable<BookInfo>>> GetBooksByISBN(string isbn)
         {
             var books = await _bookService.GetBooksByISBN(isbn);
             return Ok(books);
         }
 
         [HttpGet("tag/{tagName}")]
-        public async Task<IActionResult> GetBooksByTag(string tagName)
+        public async Task<ActionResult<IEnumerable<BookInfo>>> GetBooksByTag(string tagName)
         {
             var books = await _bookService.GetBooksByTag(tagName);
             return Ok(books);
         }
 
         [HttpGet("author/{authorName}")]
-        public async Task<IActionResult> GetBooksByAuthor(string authorName)
+        public async Task<ActionResult<IEnumerable<BookInfo>>> GetBooksByAuthor(string authorName)
         {
             var books = await _bookService.GetBooksByAuthor(authorName);
             return Ok(books);
         }
 
         [HttpGet("genre/{genreName}")]
-        public async Task<IActionResult> GetBooksByGenre(string genreName)
+        public async Task<ActionResult<IEnumerable<BookInfo>>> GetBooksByGenre(string genreName)
         {
             var books = await _bookService.GetBooksByGenre(genreName);
             return Ok(books);
