@@ -7,6 +7,7 @@
     <RootNamespace>BookHunter_Backend</RootNamespace>
     <UserSecretsId>1885787c-207b-4d29-a729-41afd270e1b9</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <Configurations>Debug;Release;ReleaseLinux</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
