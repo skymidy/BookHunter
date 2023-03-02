@@ -15,9 +15,20 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BookHunter", Version = "v1"}); });
 
 builder.Services.AddRepository();
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-builder.Configuration.GetConnectionString("DefaultConnection")
-));
+if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+{
+    builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
+    builder.Configuration.GetConnectionString("WindowsConnection")
+    ));
+}
+else
+{
+    var userSQL = Environment.GetEnvironmentVariable("SQL_USER");
+    var paswordSQL = Environment.GetEnvironmentVariable("SQL_PASSWORD");
+    builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
+    string.Format(builder.Configuration.GetConnectionString("DefaultConnection"), userSQL, paswordSQL)
+    ));
+}
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
