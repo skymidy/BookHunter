@@ -33,11 +33,11 @@ namespace BookHunter_Backend.Services
 
         private async Task UpdateBookFromDocument(IHtmlDocument document, Book book, SiteParser site, HttpClient client)
         {
-            // if (book.Description == "")
+            if (book.Description == "")
                 book.Description = document.QuerySelector(site.DescriptionSelector)?.TextContent.Trim() ?? "";
-            // if (book.PagesCount == "")
+            if (book.PagesCount == "")
                 book.PagesCount = document.QuerySelector(site.PageCountSelector)?.TextContent.Trim() ?? "";
-            // if (book.ISBN == "")
+            if (book.ISBN == "")
                 book.ISBN = document.QuerySelector(site.IsbnSelector)?.TextContent.Trim() ?? "";
             if (book.PublishedDate == DateTime.UnixEpoch || true)
             {
@@ -146,7 +146,6 @@ namespace BookHunter_Backend.Services
         public async Task HuntBookDetails()
         {
             var sites = await _siteParserRepository.GetAllAsync();
-            var books = await _bookService.GetAllAsync();
             foreach (var site in sites)
             {
                 await HuntBookDetailsTask(site);

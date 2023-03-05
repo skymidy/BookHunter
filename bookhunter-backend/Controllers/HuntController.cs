@@ -29,7 +29,7 @@ namespace BookHunter_Backend.Controllers
         [HttpGet("start")]
         public async Task<ActionResult> HuntDetails(int siteId = -1)
         {
-            if (siteId == -1)
+            if (siteId <= -1)
                 await _hunterService.HuntBookDetails();
             else
                 await _hunterService.HuntBookDetailsFromSite(siteId);

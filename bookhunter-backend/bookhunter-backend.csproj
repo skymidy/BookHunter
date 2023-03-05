@@ -12,9 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.0.2-alpha-278" />
-    <PackageReference Include="Knyaz.Optimus" Version="3.0.1" />
-    <PackageReference Include="Knyaz.Optimus.Scripting.Jint" Version="3.0.1" />
-    <PackageReference Include="Knyaz.Optimus.Scripting.Jurassic" Version="3.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
